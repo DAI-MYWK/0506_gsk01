@@ -3,6 +3,50 @@
  * 作成日: 2024年
  */
 
+// ページ読み込み時のスプラッシュ画面処理
+window.addEventListener("load", function () {
+  const splash = document.getElementById("splash");
+  const hero = document.getElementById("hero");
+  const header = document.querySelector("header");
+  const about = document.getElementById("about");
+  const allSections = document.querySelectorAll("section:not(#hero)");
+
+  // 初期状態でヘッダーとヒーローセクションとその他セクションは非表示（CSSで設定済み）
+
+  // すべてのセクションを一時的に非表示にする
+  allSections.forEach((section) => {
+    section.style.opacity = "0";
+  });
+
+  // 飛行機雲アニメーションの完了を待つ（3秒）
+  setTimeout(function () {
+    // スプラッシュ画面をフェードアウト
+    splash.classList.add("fade-out");
+
+    // スプラッシュ画面の消失後にヘッダーとヒーローセクションを表示
+    setTimeout(function () {
+      // スプラッシュを完全に非表示
+      splash.style.display = "none";
+
+      // ヘッダーとヒーローセクションを表示
+      if (header) {
+        header.classList.add("fade-in");
+      }
+      if (hero) {
+        hero.classList.add("fade-in");
+      }
+
+      // 少し遅れてその他のセクションを表示
+      setTimeout(function () {
+        allSections.forEach((section) => {
+          section.style.opacity = "1";
+          section.style.transition = "opacity 0.6s ease";
+        });
+      }, 300); // 遅延時間を短縮
+    }, 500); // フェードアウトにかかる時間を短縮
+  }, 3000); // 飛行機雲アニメーションにかかる時間
+});
+
 // DOMが完全に読み込まれた後に実行
 document.addEventListener("DOMContentLoaded", function () {
   // スワイパーの初期化
@@ -46,14 +90,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const sr = ScrollReveal({
     origin: "bottom",
     distance: "30px",
-    duration: 1000,
+    duration: 600, // アニメーション時間を短縮
+    delay: 0, // 初期遅延をなくす
     reset: false,
+    viewFactor: 0.1, // 要素の10%が見えたらアニメーション開始（デフォルトは0.2=20%）
   });
 
   // 各アニメーション要素の設定
   // フェードイン（下から上）
   sr.reveal(".animate-fade-in", {
-    delay: 200,
+    delay: 100, // 遅延時間を大幅に短縮
     afterReveal: function (el) {
       el.classList.add("visible");
     },
@@ -62,7 +108,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // フェードアップ（深く下から上）
   sr.reveal(".animate-fade-up", {
     delay: function (el, i) {
-      return el.dataset.delay ? parseInt(el.dataset.delay) : 200;
+      // 基本遅延を100msにし、data-delayがある場合はその値を加算
+      const baseDelay = 100;
+      return el.dataset.delay
+        ? baseDelay + parseInt(el.dataset.delay) / 4
+        : baseDelay; // data-delayの値を1/4に短縮
     },
     afterReveal: function (el) {
       el.classList.add("visible");
@@ -72,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // 左からのアニメーション
   sr.reveal(".animate-from-left", {
     origin: "left",
-    delay: 200,
+    delay: 100,
     afterReveal: function (el) {
       el.classList.add("visible");
     },
@@ -81,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // 右からのアニメーション
   sr.reveal(".animate-from-right", {
     origin: "right",
-    delay: 200,
+    delay: 100,
     afterReveal: function (el) {
       el.classList.add("visible");
     },
@@ -89,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 脈動アニメーション
   sr.reveal(".animate-pulsate", {
-    delay: 500,
+    delay: 100,
     afterReveal: function (el) {
       el.classList.add("visible");
     },
