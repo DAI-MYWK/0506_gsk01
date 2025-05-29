@@ -614,6 +614,48 @@ nav ul li a:hover::after {
         width: 100%;
     }
     
+    /* スワイパーナビゲーションのモバイル対応 */
+    .works-swiper {
+        padding: 20px 80px 50px;
+        overflow: visible;
+    }
+    
+    .works-swiper .swiper-button-next {
+        right: -70px !important;
+        left: auto !important;
+    }
+    
+    .works-swiper .swiper-button-prev {
+        left: -70px !important;
+        right: auto !important;
+    }
+    
+    .works-swiper .swiper-button-next:after,
+    .works-swiper .swiper-button-prev:after {
+        font-size: 22px !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin: 0 !important;
+        line-height: 1 !important;
+    }
+    
+    .works-swiper .swiper-button-next:hover,
+    .works-swiper .swiper-button-prev:hover {
+        transform: translateY(-50%) scale(1.1) !important;
+    }
+    
+    .swiper-pagination {
+        margin-top: 30px;
+    }
+    
+    .swiper-pagination-bullet {
+        width: 14px;
+        height: 14px;
+        margin: 0 4px;
+    }
+    
     .footer-content {
         flex-direction: column;
         text-align: center;
@@ -680,7 +722,54 @@ nav ul li a:hover::after {
 
     .representative-support span {
         font-size: 12px;
-        width: calc(100% - 22px);
+    }
+    
+    /* スワイパーナビゲーションの極小画面対応 */
+    .works-swiper {
+        padding: 20px 70px 50px;
+        overflow: visible;
+    }
+    
+    .works-swiper .swiper-button-next {
+        right: -60px !important;
+        left: auto !important;
+    }
+    
+    .works-swiper .swiper-button-prev {
+        left: -60px !important;
+        right: auto !important;
+    }
+    
+    .works-swiper .swiper-button-next,
+    .works-swiper .swiper-button-prev {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    .works-swiper .swiper-button-next:after,
+    .works-swiper .swiper-button-prev:after {
+        font-size: 18px !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin: 0 !important;
+        line-height: 1 !important;
+    }
+    
+    .works-swiper .swiper-button-next:hover,
+    .works-swiper .swiper-button-prev:hover {
+        transform: translateY(-50%) scale(1.05) !important;
+    }
+    
+    .swiper-pagination {
+        margin-top: 25px;
+    }
+    
+    .swiper-pagination-bullet {
+        width: 12px;
+        height: 12px;
+        margin: 0 3px;
     }
 }
 
@@ -946,60 +1035,61 @@ nav ul li a:hover::after {
 
 /* ===== 施工実績（スワイパー） ===== */
 .works-swiper {
-    padding: 20px 0 50px;
-    overflow: hidden;
+    padding: 20px 120px 50px;
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 1 !important;
 }
 
-.swiper-slide {
-    height: auto;
-    transition: all 0.5s ease;
-    opacity: 0.85;
+.works-swiper .swiper-button-next,
+.works-swiper .swiper-button-prev {
+    color: var(--primary-color) !important;
+    background-color: white !important; /* 白色に戻す */
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease !important;
+    border: 2px solid var(--primary-color) !important;
+    margin-top: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 9999 !important; /* 非常に高いz-indexに設定 */
+    position: absolute !important; /* 絶対配置を確実に */
+    display: block !important; /* 表示を確実に */
+    opacity: 1 !important; /* 透明度を確実に */
+    visibility: visible !important; /* 可視性を確実に */
+    pointer-events: auto !important; /* クリック可能に */
 }
 
-.swiper-slide-active {
-    opacity: 1;
+.works-swiper .swiper-button-next {
+    right: -100px !important;
+    left: auto !important;
 }
 
-.swiper-pagination {
-    position: relative;
-    margin-top: 20px;
+.works-swiper .swiper-button-prev {
+    left: -100px !important;
+    right: auto !important;
 }
 
-.swiper-pagination-bullet {
-    width: 12px;
-    height: 12px;
-    background-color: var(--primary-color);
-    opacity: 0.5;
-    transition: all 0.3s ease;
-}
-
-.swiper-pagination-bullet-active {
-    opacity: 1;
-    background-color: var(--primary-color);
-    transform: scale(1.2);
-}
-
-.swiper-button-next,
-.swiper-button-prev {
-    color: var(--primary-color);
-    background-color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
+.works-swiper .swiper-button-next:hover,
+.works-swiper .swiper-button-prev:hover {
     background-color: var(--primary-color);
     color: white;
-    transform: scale(1.1);
+    transform: translateY(-50%) scale(1.15) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
-.swiper-button-next:after,
-.swiper-button-prev:after {
-    font-size: 20px;
+.works-swiper .swiper-button-next:after,
+.works-swiper .swiper-button-prev:after {
+    font-size: 28px !important;
+    font-weight: bold !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important; /* 完全に中央配置 */
+    margin: 0 !important; /* デフォルトのマージンをリセット */
+    line-height: 1 !important; /* 行の高さを調整 */
 }
 
 .work-item {
@@ -1606,4 +1696,40 @@ section:not(#hero) {
 /* アニメーション表示タイミングを調整 */
 .animate-fade-in, .animate-fade-up, .animate-from-left, .animate-from-right {
     transition-delay: 0s !important;
+}
+
+.works-swiper .swiper-button-next:after,
+.works-swiper .swiper-button-prev:after {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.swiper-slide {
+    height: auto;
+    transition: all 0.5s ease;
+    opacity: 0.85;
+}
+
+.swiper-slide-active {
+    opacity: 1;
+}
+
+.swiper-pagination {
+    position: relative;
+    margin-top: 40px;
+}
+
+.swiper-pagination-bullet {
+    width: 16px;
+    height: 16px;
+    background-color: var(--primary-color);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    margin: 0 6px;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background-color: var(--primary-color);
+    transform: scale(1.3);
 } 
