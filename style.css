@@ -439,11 +439,45 @@ nav ul li a:hover::after {
     .hero-title-1, .hero-title-2, .hero-title-3 {
         font-size: 38.7px;
     }
+
+    /* サービス内容のタブレット対応 */
+    .service-row {
+        gap: 40px;
+        margin-bottom: 60px;
+    }
+
+    .service-image {
+        flex: 0 0 40%;
+        max-width: 40%;
+    }
+
+    .service-image img {
+        height: 280px;
+    }
+
+    .service-content h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .service-description p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .representative-support {
+        padding: 15px;
+    }
+
+    .representative-support span {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 768px) {
     body {
         background-attachment: scroll;
+        font-size: 14px;
     }
     
     .flow-items {
@@ -505,8 +539,75 @@ nav ul li a:hover::after {
         font-size: 28px;
     }
     
-    .service-items {
-        grid-template-columns: 1fr;
+    /* サービス内容のスマートフォン対応 */
+    .service-intro {
+        margin-bottom: 40px;
+    }
+
+    .service-intro-text {
+        font-size: 16px;
+        padding: 0 10px;
+    }
+
+    .service-row,
+    .service-row-reverse {
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 50px;
+        transform: translateY(50px);
+    }
+
+    .service-row.visible,
+    .service-row-reverse.visible {
+        transform: translateY(0);
+    }
+
+    .service-image {
+        flex: none;
+        max-width: 100%;
+        order: 1;
+    }
+
+    .service-image img {
+        height: 250px;
+    }
+
+    .service-content {
+        padding: 0;
+        order: 2;
+    }
+
+    .service-content h3 {
+        font-size: 22px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .service-content h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .service-description p {
+        font-size: 14px;
+        line-height: 1.7;
+        text-align: left;
+        margin-bottom: 15px;
+    }
+
+    .representative-support {
+        padding: 15px;
+        margin-top: 20px;
+    }
+
+    .representative-support i {
+        font-size: 16px;
+        margin-right: 10px;
+    }
+
+    .representative-support span {
+        font-size: 13px;
+        width: calc(100% - 26px);
     }
     
     .testimonial-item {
@@ -545,6 +646,42 @@ nav ul li a:hover::after {
         height: 45px;
         font-size: 22px;
     }
+
+    /* サービス内容の極小画面対応 */
+    .service-row {
+        margin-bottom: 40px;
+        gap: 25px;
+    }
+
+    .service-image img {
+        height: 200px;
+        border-radius: 10px;
+    }
+
+    .service-content h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .service-description p {
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+
+    .representative-support {
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .representative-support i {
+        font-size: 14px;
+        margin-right: 8px;
+    }
+
+    .representative-support span {
+        font-size: 12px;
+        width: calc(100% - 22px);
+    }
 }
 
 /* ===== 会社概要セクション ===== */
@@ -581,80 +718,146 @@ nav ul li a:hover::after {
 }
 
 /* ===== サービスセクション ===== */
-.service-items {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 30px;
+.service-intro {
+    text-align: center;
+    margin-bottom: 60px;
 }
 
-.service-item {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+.service-intro-text {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text-color);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* サービス行のレイアウト */
+.service-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 80px;
+    gap: 60px;
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 0.8s ease;
+}
+
+.service-row.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 右側配置（画像右・テキスト左） */
+.service-row-reverse {
+    flex-direction: row-reverse;
+    transform: translateX(100px);
+}
+
+.service-row-reverse.visible {
+    transform: translateX(0);
+}
+
+/* サービス画像 */
+.service-image {
+    flex: 0 0 45%;
+    max-width: 45%;
+}
+
+.service-image img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.service-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    background: rgba(255, 255, 255, 0.95);
+.service-image img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
-.service-icon {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
+/* サービスコンテンツ */
+.service-content {
+    flex: 1;
+    padding: 0 20px;
 }
 
-.service-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.service-item:hover .service-icon img {
-    transform: scale(1.05);
-}
-
-.service-item h3 {
-    padding: 20px;
-    font-size: 20px;
-    color: var(--secondary-color);
+.service-content h3 {
+    font-size: 28px;
     font-weight: 700;
-    background-color: var(--light-gray);
-    margin: 0;
-    border-top: 3px solid var(--primary-color);
-}
-
-.service-desc {
-    padding: 20px;
-}
-
-.service-desc p {
-    margin-bottom: 20px;
-    line-height: 1.7;
-}
-
-.service-btn {
-    color: var(--primary-color);
-    font-weight: 500;
-    display: inline-block;
-    transition: color 0.3s ease;
-}
-
-.service-btn:hover {
+    margin-bottom: 25px;
     color: var(--secondary-color);
+    position: relative;
+    padding-bottom: 15px;
 }
 
-.service-btn i {
-    margin-left: 5px;
-    transition: transform 0.3s ease;
+.service-content h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 2px;
 }
 
-.service-btn:hover i {
-    transform: translateX(5px);
+/* サービス説明文 */
+.service-description {
+    margin-bottom: 25px;
+}
+
+.service-description p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    text-align: justify;
+}
+
+.service-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* 代表立ち会いスタイル（新デザイン） */
+.representative-support {
+    background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(163, 247, 191, 0.1));
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 5px solid var(--primary-color);
+    position: relative;
+    margin-top: 25px;
+}
+
+.representative-support::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 12px;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+.representative-support i {
+    color: var(--primary-color);
+    font-size: 18px;
+    margin-right: 12px;
+    vertical-align: top;
+    margin-top: 2px;
+}
+
+.representative-support span {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--secondary-color);
+    line-height: 1.6;
+    display: inline-block;
+    width: calc(100% - 30px);
 }
 
 /* ===== 施工の流れ（横並びデザイン） ===== */
@@ -1363,15 +1566,7 @@ footer {
 }
 
 /* ===== レスポンシブ対応 ===== */
-@media (max-width: 992px) {
-    .flow-items {
-        padding-bottom: 10px;
-    }
-    
-    .flow-item {
-        min-width: 180px;
-    }
-}
+/* 992px以下と768px以下、576px以下のメディアクエリは上記で定義済み */
 
 /* ===== フォームのエラースタイル ===== */
 .form-group.has-error input,

@@ -137,6 +137,31 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
+  // サービス行の特別なアニメーション
+  sr.reveal(".service-row", {
+    origin: "left",
+    distance: "100px",
+    duration: 800,
+    delay: function (el, i) {
+      return el.dataset.delay ? parseInt(el.dataset.delay) : 100;
+    },
+    afterReveal: function (el) {
+      el.classList.add("visible");
+    },
+  });
+
+  sr.reveal(".service-row-reverse", {
+    origin: "right",
+    distance: "100px",
+    duration: 800,
+    delay: function (el, i) {
+      return el.dataset.delay ? parseInt(el.dataset.delay) : 100;
+    },
+    afterReveal: function (el) {
+      el.classList.add("visible");
+    },
+  });
+
   // 脈動アニメーション
   sr.reveal(".animate-pulsate", {
     delay: 100,
