@@ -3,48 +3,30 @@
  * 作成日: 2024年
  */
 
-// ページ読み込み時のスプラッシュ画面処理
+// ページ読み込み時の処理（スプラッシュ画面削除）
 window.addEventListener("load", function () {
   const splash = document.getElementById("splash");
   const hero = document.getElementById("hero");
   const header = document.querySelector("header");
-  const about = document.getElementById("about");
   const allSections = document.querySelectorAll("section:not(#hero)");
 
-  // 初期状態でヘッダーとヒーローセクションとその他セクションは非表示（CSSで設定済み）
+  // スプラッシュ画面を即座に非表示
+  if (splash) {
+    splash.style.display = "none";
+  }
 
-  // すべてのセクションを一時的に非表示にする
+  // ヘッダーとヒーローセクションを即座に表示
+  if (header) {
+    header.classList.add("fade-in");
+  }
+  if (hero) {
+    hero.classList.add("fade-in");
+  }
+
+  // その他のセクションも即座に表示
   allSections.forEach((section) => {
-    section.style.opacity = "0";
+    section.style.opacity = "1";
   });
-
-  // 飛行機雲アニメーションの完了を待つ（3秒）
-  setTimeout(function () {
-    // スプラッシュ画面をフェードアウト
-    splash.classList.add("fade-out");
-
-    // スプラッシュ画面の消失後にヘッダーとヒーローセクションを表示
-    setTimeout(function () {
-      // スプラッシュを完全に非表示
-      splash.style.display = "none";
-
-      // ヘッダーとヒーローセクションを表示
-      if (header) {
-        header.classList.add("fade-in");
-      }
-      if (hero) {
-        hero.classList.add("fade-in");
-      }
-
-      // 少し遅れてその他のセクションを表示
-      setTimeout(function () {
-        allSections.forEach((section) => {
-          section.style.opacity = "1";
-          section.style.transition = "opacity 0.6s ease";
-        });
-      }, 300); // 遅延時間を短縮
-    }, 500); // フェードアウトにかかる時間を短縮
-  }, 3000); // 飛行機雲アニメーションにかかる時間
 });
 
 // DOMが完全に読み込まれた後に実行
