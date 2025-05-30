@@ -3,19 +3,12 @@
  * 作成日: 2024年
  */
 
-// ページ読み込み時の処理（スプラッシュ画面削除）
-window.addEventListener("load", function () {
-  const splash = document.getElementById("splash");
-  const hero = document.getElementById("hero");
-  const header = document.querySelector("header");
-  const allSections = document.querySelectorAll("section:not(#hero)");
-
-  // スプラッシュ画面を即座に非表示
-  if (splash) {
-    splash.style.display = "none";
-  }
-
+// DOMが完全に読み込まれた後に実行
+document.addEventListener("DOMContentLoaded", function () {
   // ヘッダーとヒーローセクションを即座に表示
+  const header = document.querySelector("header");
+  const hero = document.getElementById("hero");
+
   if (header) {
     header.classList.add("fade-in");
   }
@@ -23,14 +16,6 @@ window.addEventListener("load", function () {
     hero.classList.add("fade-in");
   }
 
-  // その他のセクションも即座に表示
-  allSections.forEach((section) => {
-    section.style.opacity = "1";
-  });
-});
-
-// DOMが完全に読み込まれた後に実行
-document.addEventListener("DOMContentLoaded", function () {
   // スワイパーの初期化
   const worksSwiper = new Swiper(".works-swiper", {
     slidesPerView: 1,
@@ -163,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const targetElement = document.querySelector(targetId);
       if (!targetElement) return;
 
-      const headerHeight = document.querySelector("header").offsetHeight;
+      const headerHeight = header.offsetHeight;
       const targetPosition =
         targetElement.getBoundingClientRect().top +
         window.pageYOffset -
@@ -177,7 +162,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ヘッダースクロール時の背景変更
-  const header = document.querySelector("header");
   window.addEventListener("scroll", function () {
     if (window.scrollY > 50) {
       header.classList.add("scrolled");
