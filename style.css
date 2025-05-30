@@ -137,6 +137,7 @@ body {
     background-size: cover;
     background-color: var(--bg-color);
     visibility: visible !important; /* JavaScriptで隠されないようにする */
+    overflow-x: hidden; /* 水平スクロールを防ぐ */
 }
 
 .container {
@@ -616,17 +617,21 @@ nav ul li a:hover::after {
     
     /* スワイパーナビゲーションのモバイル対応 */
     .works-swiper {
-        padding: 20px 80px 50px;
+        padding: 20px 0 50px;
         overflow: visible;
     }
     
+    .works-swiper .swiper-wrapper {
+        padding: 0 80px; /* モバイルでは余白を小さく */
+    }
+    
     .works-swiper .swiper-button-next {
-        right: -70px !important;
+        right: 10px !important;
         left: auto !important;
     }
     
     .works-swiper .swiper-button-prev {
-        left: -70px !important;
+        left: 10px !important;
         right: auto !important;
     }
     
@@ -726,17 +731,21 @@ nav ul li a:hover::after {
     
     /* スワイパーナビゲーションの極小画面対応 */
     .works-swiper {
-        padding: 20px 70px 50px;
+        padding: 20px 0 50px;
         overflow: visible;
     }
     
+    .works-swiper .swiper-wrapper {
+        padding: 0 70px; /* 極小画面では更に余白を小さく */
+    }
+    
     .works-swiper .swiper-button-next {
-        right: -60px !important;
+        right: 5px !important;
         left: auto !important;
     }
     
     .works-swiper .swiper-button-prev {
-        left: -60px !important;
+        left: 5px !important;
         right: auto !important;
     }
     
@@ -804,6 +813,134 @@ nav ul li a:hover::after {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Before→After画像コンテナ */
+.about-images {
+    flex: 1;
+    min-width: 400px;
+}
+
+.before-after-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.before-image,
+.after-image {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+}
+
+.before-image:hover,
+.after-image:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.before-image img,
+.after-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.image-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.before-label {
+    background: linear-gradient(135deg, rgba(255, 87, 87, 0.9), rgba(255, 154, 158, 0.9));
+}
+
+.after-label {
+    background: linear-gradient(135deg, rgba(78, 205, 196, 0.9), rgba(163, 247, 191, 0.9));
+}
+
+.transformation-arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    animation: pulse-arrow 2s infinite;
+}
+
+@keyframes pulse-arrow {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 12px 35px rgba(78, 205, 196, 0.4);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .about-images {
+        min-width: auto;
+    }
+    
+    .before-after-container {
+        gap: 15px;
+    }
+    
+    .before-image img,
+    .after-image img {
+        height: 200px;
+    }
+    
+    .transformation-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .image-label {
+        font-size: 12px;
+        padding: 6px 12px;
+        top: 10px;
+        left: 10px;
+    }
 }
 
 /* ===== サービスセクション ===== */
@@ -1034,17 +1171,28 @@ nav ul li a:hover::after {
 }
 
 /* ===== 施工実績（スワイパー） ===== */
+#works {
+    overflow: hidden; /* セクション全体で水平スクロールを制御 */
+}
+
 .works-swiper {
-    padding: 20px 120px 50px;
+    padding: 20px 0 50px; /* 左右のpaddingを削除 */
     overflow: visible !important;
     position: relative !important;
     z-index: 1 !important;
+    max-width: 100%; /* 最大幅を画面幅に制限 */
+}
+
+.works-swiper .swiper-wrapper {
+    max-width: 1200px; /* コンテンツの最大幅を設定 */
+    margin: 0 auto; /* 中央配置 */
+    padding: 0 120px; /* スライド内容に左右の余白を追加 */
 }
 
 .works-swiper .swiper-button-next,
 .works-swiper .swiper-button-prev {
     color: var(--primary-color) !important;
-    background-color: white !important; /* 白色に戻す */
+    background-color: white !important;
     width: 60px !important;
     height: 60px !important;
     border-radius: 50% !important;
@@ -1054,42 +1202,22 @@ nav ul li a:hover::after {
     margin-top: 0 !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    z-index: 9999 !important; /* 非常に高いz-indexに設定 */
-    position: absolute !important; /* 絶対配置を確実に */
-    display: block !important; /* 表示を確実に */
-    opacity: 1 !important; /* 透明度を確実に */
-    visibility: visible !important; /* 可視性を確実に */
-    pointer-events: auto !important; /* クリック可能に */
+    z-index: 9999 !important;
+    position: absolute !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
 }
 
 .works-swiper .swiper-button-next {
-    right: -100px !important;
+    right: 20px !important; /* 画面端から適切な距離に配置 */
     left: auto !important;
 }
 
 .works-swiper .swiper-button-prev {
-    left: -100px !important;
+    left: 20px !important; /* 画面端から適切な距離に配置 */
     right: auto !important;
-}
-
-.works-swiper .swiper-button-next:hover,
-.works-swiper .swiper-button-prev:hover {
-    background-color: var(--primary-color);
-    color: white;
-    transform: translateY(-50%) scale(1.15) !important;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-}
-
-.works-swiper .swiper-button-next:after,
-.works-swiper .swiper-button-prev:after {
-    font-size: 28px !important;
-    font-weight: bold !important;
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important; /* 完全に中央配置 */
-    margin: 0 !important; /* デフォルトのマージンをリセット */
-    line-height: 1 !important; /* 行の高さを調整 */
 }
 
 .work-item {
@@ -1700,8 +1828,22 @@ section:not(#hero) {
 
 .works-swiper .swiper-button-next:after,
 .works-swiper .swiper-button-prev:after {
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 28px !important;
+    font-weight: bold !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important; /* 完全に中央配置 */
+    margin: 0 !important; /* デフォルトのマージンをリセット */
+    line-height: 1 !important; /* 行の高さを調整 */
+}
+
+.works-swiper .swiper-button-next:hover,
+.works-swiper .swiper-button-prev:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-50%) scale(1.15) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 .swiper-slide {
