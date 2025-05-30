@@ -234,12 +234,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function isValidEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
 
   function isValidPhone(phone) {
-    const regex = /^[0-9\-+\s()]{10,15}$/;
-    return regex.test(phone);
+    const phoneRegex = /^[\d\-\(\)\+\s]+$/;
+    return phoneRegex.test(phone) && phone.replace(/\D/g, "").length >= 10;
   }
 });
