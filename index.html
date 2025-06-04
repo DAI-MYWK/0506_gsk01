@@ -13,11 +13,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <!-- スワイパー用のCSSを追加 -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
-    />
   </head>
   <body>
     <header>
@@ -337,99 +332,115 @@
     <section id="works" class="section-padding">
       <div class="container">
         <h2 class="section-title">施工実績</h2>
-        <!-- スワイパーを使った施工実績スライダー -->
-        <div class="swiper works-swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="work-item">
-                <img src="img/result06.png" alt="新宿区S邸 屋上防水工事" />
-                <div class="work-info">
-                  <h3>新宿区S邸</h3>
-                  <p>屋上防水＋内装仕上げ</p>
-                  <p>工期：14日間</p>
-                </div>
+        <!-- 新しい施工実績デザイン：BeforeとAfterの切り替え -->
+        <div class="works-grid">
+          <div class="work-card animate-fade-up" data-delay="100">
+            <div class="work-image-container">
+              <div class="work-image active">
+                <img src="img/result06.png" alt="新宿区S邸 施工前" />
+                <div class="image-label before">BEFORE</div>
+              </div>
+              <div class="work-image">
+                <img src="img/result07.png" alt="新宿区S邸 施工後" />
+                <div class="image-label after">AFTER</div>
               </div>
             </div>
-            <div class="swiper-slide">
-              <div class="work-item">
-                <img src="img/result07.png" alt="渋谷区A邸 外壁防水工事" />
-                <div class="work-info">
-                  <h3>渋谷区A邸</h3>
-                  <p>外壁防水工事</p>
-                  <p>工期：7日間</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="work-item">
-                <img src="img/result08.png" alt="中央区M邸 ベランダ防水工事" />
-                <div class="work-info">
-                  <h3>中央区M邸</h3>
-                  <p>ベランダ防水工事</p>
-                  <p>工期：5日間</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="work-item">
-                <img
-                  src="img/result09.png"
-                  alt="大田区K邸 内装全面リフォーム"
-                />
-                <div class="work-info">
-                  <h3>大田区K邸</h3>
-                  <p>内装全面リフォーム</p>
-                  <p>工期：21日間</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="work-item">
-                <img src="img/result01.png" alt="港区T邸 外壁塗装" />
-                <div class="work-info">
-                  <h3>港区T邸</h3>
-                  <p>外壁塗装工事</p>
-                  <p>工期：10日間</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="work-item">
-                <img src="img/result02.png" alt="世田谷区H邸 シーリング工事" />
-                <div class="work-info">
-                  <h3>世田谷区H邸</h3>
-                  <p>シーリング工事</p>
-                  <p>工期：3日間</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="work-item">
-                <img src="img/result03.png" alt="杉並区Y邸 雨漏り修理" />
-                <div class="work-info">
-                  <h3>杉並区Y邸</h3>
-                  <p>雨漏り修理</p>
-                  <p>工期：4日間</p>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="work-item">
-                <img
-                  src="img/result05.png"
-                  alt="文京区F邸 キッチンリフォーム"
-                />
-                <div class="work-info">
-                  <h3>文京区F邸</h3>
-                  <p>キッチンリフォーム</p>
-                  <p>工期：7日間</p>
-                </div>
-              </div>
+            <div class="work-info">
+              <h3>新宿区S邸</h3>
+              <p>屋根葺き替え工事</p>
+              <p>工期：14日間</p>
             </div>
           </div>
-          <div class="swiper-pagination"></div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
+
+          <div class="work-card animate-fade-up" data-delay="200">
+            <div class="work-image-container">
+              <div class="work-image active">
+                <img src="img/result08.png" alt="渋谷区A邸 施工前" />
+                <div class="image-label before">BEFORE</div>
+              </div>
+              <div class="work-image">
+                <img src="img/result09.png" alt="渋谷区A邸 施工後" />
+                <div class="image-label after">AFTER</div>
+              </div>
+            </div>
+            <div class="work-info">
+              <h3>渋谷区A邸</h3>
+              <p>屋根葺き替え工事</p>
+              <p>工期：7日間</p>
+            </div>
+          </div>
+
+          <div class="work-card animate-fade-up" data-delay="300">
+            <div class="work-image-container">
+              <div class="work-image active">
+                <img src="img/result01.png" alt="中央区M邸 施工前" />
+                <div class="image-label before">BEFORE</div>
+              </div>
+              <div class="work-image">
+                <img src="img/result02.png" alt="中央区M邸 施工後" />
+                <div class="image-label after">AFTER</div>
+              </div>
+            </div>
+            <div class="work-info">
+              <h3>中央区M邸</h3>
+              <p>屋根葺き替え工事</p>
+              <p>工期：5日間</p>
+            </div>
+          </div>
+
+          <div class="work-card animate-fade-up" data-delay="400">
+            <div class="work-image-container">
+              <div class="work-image active">
+                <img src="img/result03.png" alt="大田区K邸 施工前" />
+                <div class="image-label before">BEFORE</div>
+              </div>
+              <div class="work-image">
+                <img src="img/result05.png" alt="大田区K邸 施工後" />
+                <div class="image-label after">AFTER</div>
+              </div>
+            </div>
+            <div class="work-info">
+              <h3>大田区K邸</h3>
+              <p>屋根葺き替え工事</p>
+              <p>工期：21日間</p>
+            </div>
+          </div>
+
+          <div class="work-card animate-fade-up" data-delay="500">
+            <div class="work-image-container">
+              <div class="work-image active">
+                <img src="img/シート防水工事03.png" alt="港区T邸 施工前" />
+                <div class="image-label before">BEFORE</div>
+              </div>
+              <div class="work-image">
+                <img src="img/ウレタン防水工事03.png" alt="港区T邸 施工後" />
+                <div class="image-label after">AFTER</div>
+              </div>
+            </div>
+            <div class="work-info">
+              <h3>港区T邸</h3>
+              <p>シート防水工事</p>
+              <p>工期：10日間</p>
+            </div>
+          </div>
+
+          <div class="work-card animate-fade-up" data-delay="600">
+            <div class="work-image-container">
+              <div class="work-image active">
+                <img src="img/長尺床貼り01.png" alt="世田谷区H邸 施工前" />
+                <div class="image-label before">BEFORE</div>
+              </div>
+              <div class="work-image">
+                <img src="img/長尺床貼り02.png" alt="世田谷区H邸 施工後" />
+                <div class="image-label after">AFTER</div>
+              </div>
+            </div>
+            <div class="work-info">
+              <h3>世田谷区H邸</h3>
+              <p>長尺床貼り工事</p>
+              <p>工期：3日間</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -745,8 +756,6 @@
       </div>
     </footer>
 
-    <!-- スワイパーのJavaScriptを追加 -->
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <!-- スクロールアニメーション用のIntersection Observerライブラリ -->
     <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
     <!-- カスタムJavaScript -->

@@ -16,41 +16,30 @@ document.addEventListener("DOMContentLoaded", function () {
     hero.classList.add("fade-in");
   }
 
-  // スワイパーの初期化
-  const worksSwiper = new Swiper(".works-swiper", {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    loop: true,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-      reverseDirection: true,
-    },
-    speed: 800,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    // レスポンシブ対応
-    breakpoints: {
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      992: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      },
-      1200: {
-        slidesPerView: 4,
-        spaceBetween: 30,
-      },
-    },
-  });
+  // BeforeとAfterの画像切り替え機能
+  function initImageSwitcher() {
+    const workCards = document.querySelectorAll(".work-card");
+
+    workCards.forEach((card) => {
+      const images = card.querySelectorAll(".work-image");
+      let currentIndex = 0;
+
+      // 3秒ごとに画像を切り替え
+      setInterval(() => {
+        // 現在の画像を非表示
+        images[currentIndex].classList.remove("active");
+
+        // 次の画像のインデックスを計算（2枚でループ）
+        currentIndex = (currentIndex + 1) % images.length;
+
+        // 次の画像を表示
+        images[currentIndex].classList.add("active");
+      }, 3000);
+    });
+  }
+
+  // 画像切り替え機能を初期化
+  initImageSwitcher();
 
   // スクロールアニメーションの設定
   // ScrollRevealライブラリを使用
